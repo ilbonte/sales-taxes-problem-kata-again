@@ -7,6 +7,10 @@ module.exports = class Product {
     this._imported = imported
   }
 
+  get price(){
+    return this._price
+  }
+
   get salesTaxes() {
     const BASIC_TAX_RATE = 10
 
