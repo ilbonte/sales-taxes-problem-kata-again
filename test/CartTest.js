@@ -2,7 +2,8 @@ const {equal, deepEqual} = require('assert')
 const Cart = require('../src/Cart')
 const Product = require('../src/Product')
 
-test("new cart is empty", function(){
+test("Cart: ", function(){
+  test("new cart is empty", function(){
   const cart = new Cart()
   deepEqual([], cart.products)
 })
@@ -26,4 +27,5 @@ test("can get te total for a cart with product that are not taxed", function(){
   cart.addProduct(meat)
 
   equal(25, cart.totalPrice)
+})
 })
