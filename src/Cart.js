@@ -7,4 +7,7 @@ module.exports = class Cart{
     return this._products
   }
 
+  addProduct(product){
+    this._products.push(product)
+  }
 }
