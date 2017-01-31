@@ -1,10 +1,11 @@
+const CATEGORIES = require('./categories.json')
 module.exports = class Product {
-  constructor(quantity, name, price, taxed, imported) {
+  constructor(quantity, name, price, imported) {
     this._quantiry = quantity
     this._name = name
     this._price = price
-    this._taxed = taxed
     this._imported = imported
+    this._taxed =  this._isTaxed(name)
   }
 
   get price(){
@@ -19,6 +20,11 @@ module.exports = class Product {
     }
 
     return 0
+  }
 
+  _isTaxed(productName){
+    console.log(Object.values(CATEGORIES));
+    
+    return !Object.entries(CATEGORIES).includes(productName)
   }
 }
