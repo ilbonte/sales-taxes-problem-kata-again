@@ -41,13 +41,14 @@ test("Product:", function () {
 
   test("tax calculation with only import duty", function(){
     const imported = true
-    const exemptProduct = new Product(1, EXEMPT_NAME_PRODUCT, 10.00, imported)
+    const exemptProduct = new Product(1, EXEMPT_NAME_PRODUCT, 27.99, imported)
 
-    equal(0.5, exemptProduct.salesTaxes)
+    equal(1.4, exemptProduct.salesTaxes)
   })
 
   test("tax calculation for imported and not exempt product", function(){
-    const importedCar= new Product(1, NOT_EXEMPT_NAME_PRODUCT, 27.99, true)
+    const imported = true
+    const importedCar= new Product(1, NOT_EXEMPT_NAME_PRODUCT, 27.99, imported)
 
     equal(4.20, importedCar.salesTaxes)
   })
