@@ -5,19 +5,19 @@ const Product = require('../src/Product')
 test("Product:", function () {
 
   test("no tax due for a not imported and exempt product", function () {
-    const product = new Product(null, "book", null)
+    const product = new ProductBuilder().withName("book").build()
 
     equal(0, product.salesTaxes)
   })
 
   test("exempt product is not taxed", function(){
-    const product = new Product(null, "book", null)
+    const product = new ProductBuilder().withName("book").build()
 
     equal(false, product._taxed)
   })
 
   test("normal product is taxed", function(){
-    const product = new Product(null, "Ferrari", null)
+    const product = new ProductBuilder().withName("Ferrari").build()
 
     equal(true, product._taxed)
   })
@@ -58,3 +58,19 @@ test("Product:", function () {
     equal(96.57, importedCars.taxedPrice)
   })
 })
+
+class ProductBuilder {
+
+  constructor() {
+    this.name = ""
+  }
+
+  withName(name) {
+    this.name = name
+    return this
+  }
+
+  build() {
+    return new Product(null,this.name,null)
+  }
+}
