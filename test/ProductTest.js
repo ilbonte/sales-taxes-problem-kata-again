@@ -10,7 +10,6 @@ test("Product:", function () {
     equal(0, product.salesTaxes)
   })
 
-
   test("can detect if a product is exempt or not", function(){
     const book = new Product(1, "book", 10)
     const car = new Product(1, "Ferrari", 10000)
@@ -54,5 +53,4 @@ test("Product:", function () {
     equal(12.60, importedCars.salesTaxes)
     equal(96.57, importedCars.taxedPrice)
   })
-
 })
