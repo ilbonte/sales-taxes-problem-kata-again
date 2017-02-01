@@ -1,7 +1,7 @@
 const CATEGORIES = require('./categories.json')
 module.exports = class Product {
   constructor(quantity, name, price, imported = false) {
-    this.quantity = quantity
+    this._quantity = quantity
     this._name = name
     this._price = price
     this._imported = imported
@@ -11,8 +11,16 @@ module.exports = class Product {
   }
 
   get taxedPrice() {
-    const notTaxedPrice = this._fixDecimals(this._price * this.quantity)
+    const notTaxedPrice = this._fixDecimals(this._price * this._quantity)
     return this._fixDecimals(notTaxedPrice+this.salesTaxes)
+  }
+
+  get quantity(){
+    return this._quantity
+  }
+
+  get name(){
+    return this._name
   }
 
   get salesTaxes() {
@@ -26,7 +34,7 @@ module.exports = class Product {
       totalTaxes += this._calculateTaxes(this._price, this.IMPORT_TAX_RATE)
     }
 
-    return this._fixDecimals(totalTaxes*this.quantity)
+    return this._fixDecimals(totalTaxes*this._quantity)
   }
 
   _calculateTaxes(price, rate) {
