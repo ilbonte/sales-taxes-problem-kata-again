@@ -22,16 +22,16 @@ test("Product:", function () {
     equal(true, product.isTaxed)
   })
 
-  test("tax calculation for a non imported product when rounding is not necessary", function(){
-    const car = new Product(1, "Pandino", 15.00)
+  test("tax calculation without rounding", function(){
+    const product = new ProductBuilder().withName("Ferrari").withPrice(15.00).build()
 
-    equal(1.50, car.salesTaxes)
+    equal(1.50, product.salesTaxes)
   })
 
-  test("tax calculation for a non imported product with rounding up", function(){
-    const car = new Product(1, "Astra", 10.22)
+  test("tax calculation with rounding up", function(){
+    const product = new ProductBuilder().withName("Ferrari").withPrice(10.22).build()
 
-    equal(1.05, car.salesTaxes)
+    equal(1.05, product.salesTaxes)
   })
 
   test("tax calculation for a imported product that is exempt", function(){
@@ -62,7 +62,6 @@ test("Product:", function () {
 class ProductBuilder {
 
   constructor() {
-    this.name = ""
   }
 
   withName(name) {
@@ -70,7 +69,12 @@ class ProductBuilder {
     return this
   }
 
+  withPrice(price) {
+    this.price = price
+    return this
+  }
+
   build() {
-    return new Product(null,this.name,null)
+    return new Product(1,this.name,this.price)
   }
 }
