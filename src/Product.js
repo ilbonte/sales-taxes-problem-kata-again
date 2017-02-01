@@ -1,11 +1,13 @@
 const CATEGORIES = require('./categories.json')
 module.exports = class Product {
-  constructor(quantity, name, price, imported) {
+  constructor(quantity, name, price, imported = false) {
     this._quantiry = quantity
     this._name = name
     this._price = price
     this._imported = imported
     this._taxed = this._isTaxed(name)
+    this.BASIC_TAX_RATE = 10
+    this.IMPORT_TAX_RATE = 5
   }
 
   get price() {
@@ -13,15 +15,22 @@ module.exports = class Product {
   }
 
   get salesTaxes() {
-    const BASIC_TAX_RATE = 10
 
+    let totalTaxes = 0
     if (this._taxed) {
-      const salesTaxes = (this._price * BASIC_TAX_RATE) / 100
-      return this._roundUp(salesTaxes);
+      totalTaxes += this._calculateTaxes(this._price, this.BASIC_TAX_RATE)
     }
 
-    return 0
+    if (this._imported) {
+      totalTaxes += this._calculateTaxes(this._price, this.IMPORT_TAX_RATE)
+    }
+
+    return totalTaxes
   }
+
+  _calculateTaxes(price, rate) {
+    return this._roundUp((price * rate) / 100)
+  };
 
   _isTaxed(productName) {
     const flat = [].concat.apply([], Object.values(CATEGORIES))

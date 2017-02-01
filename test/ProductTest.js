@@ -28,6 +28,14 @@ test("Product:", function () {
     
     equal(1.05, car.salesTaxes)
   })
+
+  test("tax calculation for a imported product that is exempt", function(){
+    const importedBook = new Product(1, "book", 10.00, true)
+    
+    equal(0.5, importedBook.salesTaxes)
+  })
+
+  
   
 })
 
