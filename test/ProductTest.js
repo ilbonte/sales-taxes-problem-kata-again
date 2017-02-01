@@ -54,14 +54,16 @@ test("Product:", function () {
   })
 
   test("calculate taxes for multiple products", function () {
-    const importedCars= new Product(2, "Ferrari", 27.99, true)
+    const quantity = 2
+    const importedCars= new Product(quantity, "Ferrari", 27.99, true)
 
     equal(8.40, importedCars.salesTaxes)
   })
 
   test("calculate price for multiple product", function(){
-    const importedCars= new Product(3, "Ferrari", 27.99, true)
-    equal(12.60, importedCars.salesTaxes)
+    const quantity = 3
+    const importedCars= new Product(quantity, "Ferrari", 27.99, true)
+
     equal(96.57, importedCars.taxedPrice)
   })
 })
