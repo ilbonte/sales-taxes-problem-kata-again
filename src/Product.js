@@ -16,7 +16,8 @@ module.exports = class Product {
     const BASIC_TAX_RATE = 10
 
     if (this._taxed) {
-      return this._price * (BASIC_TAX_RATE / 100)
+      const salesTaxes = (this._price * BASIC_TAX_RATE) / 100
+      return Product._roundUp(salesTaxes);
     }
 
     return 0
@@ -25,5 +26,9 @@ module.exports = class Product {
   _isTaxed(productName) {
     const flat = [].concat.apply([], Object.values(CATEGORIES))
     return !flat.includes(productName)
+  }
+
+  static _roundUp(valueToRound){
+    return Math.ceil(valueToRound*20)/20
   }
 }

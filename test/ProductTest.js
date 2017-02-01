@@ -22,6 +22,19 @@ test("Product:", function () {
 
     equal(1.50, car.salesTaxes)
   })
+
+  test("can round up to nearest 0.05", function(){
+    equal(1.05,Product._roundUp(1.01))
+    equal(2.40,Product._roundUp(2.375))
+    equal(0.05,Product._roundUp(0.001))
+    equal(0.10,Product._roundUp(0.10))
+  })
+
+  test("tax calculation for a non imported product with rounding up", function(){
+    const car = new Product(1, "Astra", 10.22)
+    
+    equal(1.05, car.salesTaxes)
+  })
   
 })
 
