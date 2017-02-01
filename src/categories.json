@@ -1,5 +1,5 @@
 {
   "books":["book"],
-  "food":["chocolate bar","chocolates", "meat"],
-  "medical":["headache pills"]
+  "food":["chocolate bar","chocolates", "meat","box of chocolates"],
+  "medical":["headache pills","packet of headache pills"]
 }

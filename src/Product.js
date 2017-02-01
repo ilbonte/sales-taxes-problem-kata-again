@@ -46,6 +46,10 @@ module.exports = class Product {
     return !flat.includes(productName)
   }
 
+  isImported(){
+    return this._imported
+  }
+
   _roundUp(valueToRound) {
      let rounded = Math.ceil(valueToRound * 20) / 20
      return this._fixDecimals(rounded)

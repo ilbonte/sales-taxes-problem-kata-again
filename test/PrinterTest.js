@@ -22,4 +22,24 @@ Total: 29.83`
 
     equal(expectedReceipt, printer.receipt)
   })
+
+  test("print the receipt with imported products", function(){
+    const expectedReceipt = `1 imported bottle of perfume: 32.19
+1 bottle of perfume: 20.89
+1 packet of headache pills: 9.75
+1 imported box of chocolates: 11.85
+Sales Taxes: 6.70
+Total: 74.68`
+
+  const cart = new Cart()
+    cart.addProduct(new Product(1, "bottle of perfume", 27.99, true))
+    cart.addProduct(new Product(1, "bottle of perfume", 18.99))
+    cart.addProduct(new Product(1, "packet of headache pills", 9.75))
+    cart.addProduct(new Product(1, "box of chocolates", 11.25, true))
+    
+
+    const printer = new Printer(cart)
+
+    equal(expectedReceipt, printer.receipt)
+  })
 })
