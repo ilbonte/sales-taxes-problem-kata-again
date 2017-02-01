@@ -4,26 +4,29 @@ const Product = require('../src/Product')
 
 test("Product:", function () {
 
+  const EXEMPT_NAME_PRODUCT = "book"
+  const NOT_EXEMPT_NAME_PRODUCT = "Ferrari"
+
   test("no tax due for a not imported and exempt product", function () {
-    const product = new ProductBuilder().withName("book").build()
+    const product = new ProductBuilder().withName(EXEMPT_NAME_PRODUCT).build()
 
     equal(0, product.salesTaxes)
   })
 
   test("exempt product is not taxed", function(){
-    const product = new ProductBuilder().withName("book").build()
+    const product = new ProductBuilder().withName(EXEMPT_NAME_PRODUCT).build()
 
     equal(false, product.isTaxed)
   })
 
   test("normal product is taxed", function(){
-    const product = new ProductBuilder().withName("Ferrari").build()
+    const product = new ProductBuilder().withName(NOT_EXEMPT_NAME_PRODUCT).build()
 
     equal(true, product.isTaxed)
   })
 
   test("tax calculation without rounding", function(){
-    const product = new ProductBuilder().withName("Ferrari").withPrice(15.00).build()
+    const product = new ProductBuilder().withName(NOT_EXEMPT_NAME_PRODUCT).withPrice(15.00).build()
 
     equal(1.50, product.salesTaxes)
   })
@@ -38,13 +41,13 @@ test("Product:", function () {
 
   test("tax calculation with only import duty", function(){
     const imported = true
-    const importedBook = new Product(1, "book", 10.00, imported)
+    const exemptProduct = new Product(1, EXEMPT_NAME_PRODUCT, 10.00, imported)
 
-    equal(0.5, importedBook.salesTaxes)
+    equal(0.5, exemptProduct.salesTaxes)
   })
 
   test("tax calculation for imported and not exempt product", function(){
-    const importedCar= new Product(1, "Ferrari", 27.99, true)
+    const importedCar= new Product(1, NOT_EXEMPT_NAME_PRODUCT, 27.99, true)
 
     equal(4.20, importedCar.salesTaxes)
   })
