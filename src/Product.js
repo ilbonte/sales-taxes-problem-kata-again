@@ -23,8 +23,7 @@ module.exports = class Product {
   }
 
   _isTaxed(productName){
-    console.log(Object.values(CATEGORIES));
-    
-    return !Object.entries(CATEGORIES).includes(productName)
+    const flat = [].concat.apply([], Object.values(CATEGORIES))
+    return !flat.includes(productName)
   }
 }

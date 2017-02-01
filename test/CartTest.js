@@ -18,7 +18,7 @@ test("can insert a product in the cart", function(){
   deepEqual(product, cart.products[0])
 })
 
-test("can get te total for a cart with product that are not taxed", function(){
+test("can get the total for a cart with product that are not taxed", function(){
   const cart = new Cart()
   const book = new Product(1,"book", 10.00)
   const meat = new Product(1,"meat", 15.00)
