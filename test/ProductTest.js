@@ -29,7 +29,7 @@ test("Product:", function () {
   })
 
   test("tax calculation with rounding up", function(){
-    const product = new ProductBuilder().withName("Ferrari").withPrice(10.22).build()
+    const product = TaxedProduct.withPrice(10.22)
 
     const tax = product.salesTaxes
 
@@ -60,6 +60,12 @@ test("Product:", function () {
     equal(96.57, importedCars.taxedPrice)
   })
 })
+
+class TaxedProduct {
+  static withPrice(price) {
+    return new ProductBuilder().withName("Ferrari").withPrice(price).build()
+  }
+}
 
 class ProductBuilder {
 
