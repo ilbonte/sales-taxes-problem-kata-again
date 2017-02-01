@@ -5,10 +5,10 @@ module.exports = class Product {
     this._name = name
     this._price = price
     this._imported = imported
-    this._taxed =  this._isTaxed(name)
+    this._taxed = this._isTaxed(name)
   }
 
-  get price(){
+  get price() {
     return this._price
   }
 
@@ -22,7 +22,7 @@ module.exports = class Product {
     return 0
   }
 
-  _isTaxed(productName){
+  _isTaxed(productName) {
     const flat = [].concat.apply([], Object.values(CATEGORIES))
     return !flat.includes(productName)
   }
