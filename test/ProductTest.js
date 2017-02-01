@@ -16,6 +16,12 @@ test("Product:", function () {
     equal(false, book._taxed)
     equal(true, car._taxed)
   })
+
+  test("tax calculation for a non imported product when rounding is not necessary", function(){
+    const car = new Product(1, "Pandino", 15.00)
+
+    equal(1.50, car.salesTaxes)
+  })
   
 })
 
