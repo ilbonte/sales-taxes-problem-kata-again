@@ -9,7 +9,7 @@ module.exports = class Cart {
 
   get totalPrice() {
     return this._products.reduce((total, product) => {
-      return total += product.price
+      return total += product.price + product.salesTaxes 
     }, 0)
   }
 
