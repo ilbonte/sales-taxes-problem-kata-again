@@ -13,13 +13,13 @@ test("Product:", function () {
   test("exempt product is not taxed", function(){
     const product = new ProductBuilder().withName("book").build()
 
-    equal(false, product._taxed)
+    equal(false, product.isTaxed)
   })
 
   test("normal product is taxed", function(){
     const product = new ProductBuilder().withName("Ferrari").build()
 
-    equal(true, product._taxed)
+    equal(true, product.isTaxed)
   })
 
   test("tax calculation for a non imported product when rounding is not necessary", function(){
