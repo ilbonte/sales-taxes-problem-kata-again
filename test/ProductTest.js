@@ -3,6 +3,7 @@ const {equal, deepEqual} = require('assert')
 const Product = require('../src/Product')
 
 test("Product:", function () {
+
   test("no tax due for a not imported and exempt product", function () {
     const product = new Product(1, "book", 10)
 
@@ -46,6 +47,12 @@ test("Product:", function () {
     const importedCars= new Product(2, "Ferrari", 27.99, true)
     
     equal(8.40, importedCars.salesTaxes)
+  })
+
+  test("calculate price for multiple product", function(){
+    const importedCars= new Product(3, "Ferrari", 27.99, true)
+    equal(12.60, importedCars.salesTaxes)
+    equal(96.57, importedCars.taxedPrice)
   })
   
 })

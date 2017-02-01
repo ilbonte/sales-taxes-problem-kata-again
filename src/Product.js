@@ -10,8 +10,9 @@ module.exports = class Product {
     this.IMPORT_TAX_RATE = 5
   }
 
-  get price() {
-    return this._price
+  get taxedPrice() {
+    const notTaxedPrice = this._fixDecimals(this._price * this.quantity)
+    return this._fixDecimals(notTaxedPrice+this.salesTaxes)
   }
 
   get salesTaxes() {

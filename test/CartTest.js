@@ -40,4 +40,17 @@ test("Cart: ", function () {
     equal(26.50, cart.totalPrice)
   })
 
+  test("can get the total for a cart with multiple taxed products", function () {
+    const cart = new Cart()
+    const book = new Product(1, "book", 10.00)
+    const glasses = new Product(2, "Glasses", 15.10)
+    const cars = new Product(3, "Ferrari", 20.99, true)
+
+    cart.addProduct(book)
+    cart.addProduct(glasses)    
+    cart.addProduct(cars)
+
+    equal(115.72, cart.totalPrice)
+  })
+
 })
