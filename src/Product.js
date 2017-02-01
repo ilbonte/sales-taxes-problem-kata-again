@@ -25,7 +25,7 @@ module.exports = class Product {
       totalTaxes += this._calculateTaxes(this._price, this.IMPORT_TAX_RATE)
     }
 
-    return totalTaxes
+    return this._fixDecimals(totalTaxes)
   }
 
   _calculateTaxes(price, rate) {
@@ -38,6 +38,11 @@ module.exports = class Product {
   }
 
   _roundUp(valueToRound) {
-    return Math.ceil(valueToRound * 20) / 20
+     let rounded = Math.ceil(valueToRound * 20) / 20
+     return this._fixDecimals(rounded)
+  }
+  _fixDecimals(floatValue){
+    //workaround for "JS broken math": http://stackoverflow.com/questions/588004/is-floating-point-math-broken 
+    return  parseFloat(floatValue.toFixed(2))
   }
 }
