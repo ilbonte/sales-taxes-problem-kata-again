@@ -36,7 +36,7 @@ test("Product:", function () {
     equal(1.05, tax)
   })
 
-  test("tax calculation for a imported product that is exempt", function(){
+  test("tax calculation with only import duty", function(){
     const isExempt = true
     const importedBook = new Product(1, "book", 10.00, isExempt)
 
