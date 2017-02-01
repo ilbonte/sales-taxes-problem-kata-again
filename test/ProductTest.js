@@ -5,21 +5,21 @@ const Product = require('../src/Product')
 test("Product:", function () {
 
   test("no tax due for a not imported and exempt product", function () {
-    const product = new Product(1, "book", 10)
+    const product = new Product(null, "book", null)
 
     equal(0, product.salesTaxes)
   })
 
   test("exempt product is not taxed", function(){
-    const book = new Product(1, "book", 10)
+    const product = new Product(null, "book", null)
 
-    equal(false, book._taxed)
+    equal(false, product._taxed)
   })
 
   test("normal product is taxed", function(){
-    const car = new Product(1, "Ferrari", 10000)
+    const product = new Product(null, "Ferrari", null)
 
-    equal(true, car._taxed)
+    equal(true, product._taxed)
   })
 
   test("tax calculation for a non imported product when rounding is not necessary", function(){
