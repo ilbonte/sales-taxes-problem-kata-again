@@ -13,6 +13,12 @@ module.exports = class Cart {
     }, 0)
   }
 
+  get totalTaxes(){
+    return this._products.reduce((total, product) => {
+      return total += product.salesTaxes
+    }, 0)
+  }
+
   addProduct(product) {
     this._products.push(product)
   }

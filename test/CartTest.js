@@ -53,4 +53,18 @@ test("Cart: ", function () {
     equal(115.72, cart.totalPrice)
   })
 
+  test("can get total taxes amount for the cart", function(){
+    const cart = new Cart()
+    const book = new Product(2, "book", 10.00)
+    const glasses = new Product(1, "Glasses", 15.00)
+    const cars = new Product(3, "Ferrari", 30.00, true)
+
+    cart.addProduct(book)
+    cart.addProduct(glasses)    
+    cart.addProduct(cars)
+
+    equal(15.00, cart.totalTaxes)
+  })
+
 })
+
