@@ -5,7 +5,7 @@ module.exports = class Product {
     this._name = name
     this._price = price
     this._imported = imported
-    this._taxed = this._isTaxed(name)
+    this.isTaxed = this._isTaxed(name)
     this.BASIC_TAX_RATE = 10
     this.IMPORT_TAX_RATE = 5
   }
@@ -26,7 +26,7 @@ module.exports = class Product {
   get salesTaxes() {
 
     let totalTaxes = 0
-    if (this._taxed) {
+    if (this.isTaxed) {
       totalTaxes += this._calculateTaxes(this._price, this.BASIC_TAX_RATE)
     }
 
